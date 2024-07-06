@@ -7,9 +7,9 @@ const recipes = [
   { id: '3', title: 'Beef Stew' },
 ];
 
-const ResepList = ({ navigation }) => {
+const RecipesList = ({ navigation }) => {
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('ResepDetail', { recipeId: item.id })}>
+    <TouchableOpacity onPress={() => navigation.navigate('RecipeDetail', { recipeId: item.id })}>
       <View style={styles.item}>
         <Text style={styles.title}>{item.title}</Text>
       </View>
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResepList;
+export default RecipesList;

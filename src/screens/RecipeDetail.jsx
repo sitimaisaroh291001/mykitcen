@@ -1,12 +1,10 @@
-// src/screens/RecipeDetail.js
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const recipeDetails = {
-  '1': { name: 'Spaghetti Bolognese', ingredients: 'Spaghetti, Tomato Sauce, Beef', instructions: 'Cook spaghetti, add sauce and beef.' },
-  '2': { name: 'Chicken Curry', ingredients: 'Chicken, Curry Powder, Coconut Milk', instructions: 'Cook chicken, add curry powder and coconut milk.' },
-  '3': { name: 'Beef Stroganoff', ingredients: 'Beef, Mushrooms, Sour Cream', instructions: 'Cook beef, add mushrooms and sour cream.' },
+  '1': { title: 'Spaghetti Bolognese', ingredients: ['Spaghetti', 'Ground Beef', 'Tomato Sauce'], instructions: 'Boil pasta, cook beef, mix with sauce.' },
+  '2': { title: 'Chicken Curry', ingredients: ['Chicken', 'Curry Powder', 'Coconut Milk'], instructions: 'Cook chicken, add curry powder and coconut milk.' },
+  '3': { title: 'Beef Stew', ingredients: ['Beef', 'Potatoes', 'Carrots'], instructions: 'Brown beef, add vegetables and simmer.' },
 };
 
 const RecipeDetail = ({ route }) => {
@@ -15,11 +13,13 @@ const RecipeDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{recipe.name}</Text>
-      <Text style={styles.subtitle}>Ingredients:</Text>
-      <Text>{recipe.ingredients}</Text>
-      <Text style={styles.subtitle}>Instructions:</Text>
-      <Text>{recipe.instructions}</Text>
+      <Text style={styles.title}>{recipe.title}</Text>
+      <Text style={styles.header}>Ingredients:</Text>
+      {recipe.ingredients.map((ingredient, index) => (
+        <Text key={index} style={styles.text}>{ingredient}</Text>
+      ))}
+      <Text style={styles.header}>Instructions:</Text>
+      <Text style={styles.text}>{recipe.instructions}</Text>
     </View>
   );
 };
@@ -31,10 +31,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginBottom: 10,
+    fontWeight: 'bold',
   },
-  subtitle: {
-    fontSize: 18,
+  header: {
+    fontSize: 20,
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 16,
     marginTop: 10,
   },
 });
